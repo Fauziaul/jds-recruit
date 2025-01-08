@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: php-app
+    ports:
+      - "80:80"
+    environment:
+      JWT_KEY_SECRET: "your_jwt_secret_key"
+    volumes:
+      - .:/var/www/html/
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

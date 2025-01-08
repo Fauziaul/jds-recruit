@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: node-api
+    ports:
+      - "3000:3000"
+    environment:
+      JWT_SECRET_KEY: "your_jwt_secret_key"
+      CURRENCY_CONVERTER_API_URL: "https://free.currencyconverterapi.com/api/v5/convert?q=USD_IDR&compact=y"
+    volumes:
+      - .:/app

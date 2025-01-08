@@ -1,0 +1,19 @@
+# Dockerfile
+FROM php:10.1-apache
+
+# Install required PHP extensions
+RUN docker-php-ext-install pdo pdo_mysql
+
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+
+# Enable mod_rewrite for Apache
+RUN a2enmod rewrite
+
+# Copy the PHP files to the container
+COPY . /var/www/html/
+
+# Expose port 80
+EXPOSE 80
+
+CMD ["apache2-foreground"]
